@@ -1,5 +1,5 @@
 import { getStore } from '@netlify/blobs';
-const songs=new Set(['wrong-side','borrowed-time','aint-done','get-a-dog','road-less-traveled','never-left','footprints']);
+const songs=new Set(['wrong-side','borrowed-time','aint-done','get-a-dog','road-less-traveled','never-left','footprints','never-and-forever']);
 const headers={'Content-Type':'application/json','Cache-Control':'no-store'};
 const reply=(body,status=200)=>new Response(JSON.stringify(body),{status,headers});
 export default async function handler(request){
