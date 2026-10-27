@@ -20,3 +20,6 @@ This site has like buttons for six songs, no comments, and no public totals.
 - The dashboard URL is not secret; the token protects the counts. Keep the token private.
 - Netlify Blobs is subject to your Netlify plan's usage and limits.
 - If the site is deployed somewhere other than Netlify, the serverless endpoints will need an equivalent backend.
+
+## Footprints artwork
+The Footprints song card is ready, but the generated image needs to be uploaded as a binary asset at `assets/footprints.jpg` (JPEG) using GitHub's web upload interface. Until then, the card shows a gradient placeholder. Do not mark the song released until the recording is available.
