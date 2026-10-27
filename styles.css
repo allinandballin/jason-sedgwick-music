@@ -7,3 +7,5 @@
 
 /* Song appreciation: counts are intentionally not public. */
 .song-like{margin-top:17px;padding-top:15px;border-top:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-wrap:wrap}.like-button{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(217,177,123,.5);background:transparent;color:var(--paper);padding:7px 13px;cursor:pointer;font-size:12px;font-weight:700;transition:background .2s,color .2s}.like-button:hover,.like-button:focus-visible{background:rgba(217,177,123,.14);outline-offset:3px}.like-button.liked{color:#f0c993;border-color:#d9b17b}.like-button:disabled{opacity:.6;cursor:wait}.like-heart{font-size:23px;line-height:1;color:#e5a0a0}.like-feedback{font-size:11px;color:var(--muted)}
+
+.footprints-art.art-fallback{background:linear-gradient(165deg,#142b42 0%,#9b5531 42%,#e9a84c 68%,#39271f 100%);min-height:220px}.footprints-art.art-fallback::after{content:'FOOTPRINTS';position:absolute;left:12px;right:12px;top:46%;text-align:center;color:#f4d9ad;font-family:Georgia,serif;font-size:clamp(25px,3vw,42px);letter-spacing:.09em;text-shadow:0 2px 8px #0009}
