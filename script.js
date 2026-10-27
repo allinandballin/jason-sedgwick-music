@@ -1,1 +1,12 @@
 const toggle=document.querySelector('.menu-toggle');const nav=document.querySelector('#nav-links');toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');toggle.textContent=open?'×':'☰';});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open navigation');toggle.textContent='☰';}));document.querySelector('#year').textContent=new Date().getFullYear();
+
+/* Private song appreciation: the server saves a like for each browser ID. */
+const likeButtons=document.querySelectorAll('.like-button');
+const visitorKey='jason-music-visitor-id';
+let visitorId;
+try{visitorId=localStorage.getItem(visitorKey);if(!visitorId){visitorId=crypto.randomUUID();localStorage.setItem(visitorKey,visitorId)}}catch{visitorId=crypto.randomUUID()}
+const savedLikesKey='jason-music-liked-songs';
+let likedSongs=[];
+try{likedSongs=JSON.parse(localStorage.getItem(savedLikesKey)||'[]');if(!Array.isArray(likedSongs))likedSongs=[]}catch{}
+function renderLike(button,liked){button.classList.toggle('liked',liked);button.setAttribute('aria-pressed',String(liked));button.querySelector('.like-heart').textContent=liked?'♥':'♡';button.querySelector('.like-label').textContent=liked?'Liked':'Like this song';button.setAttribute('aria-label',liked?'Unlike this song':'Like this song')}
+likeButtons.forEach(button=>{const song=button.dataset.song;renderLike(button,likedSongs.includes(song));button.addEventListener('click',async()=>{if(button.disabled)return;const next=!likedSongs.includes(song);const feedback=button.parentElement.querySelector('.like-feedback');button.disabled=true;feedback.textContent='Saving…';try{const response=await fetch('/.netlify/functions/song-like',{method:next?'POST':'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify({song,visitorId})});if(!response.ok)throw new Error('Like service unavailable');likedSongs=next?[...new Set([...likedSongs,song])]:likedSongs.filter(s=>s!==song);try{localStorage.setItem(savedLikesKey,JSON.stringify(likedSongs))}catch{}renderLike(button,next);feedback.textContent=next?'Thanks for the love!':'Like removed.'}catch{feedback.textContent='Could not save right now. Please try again.'}finally{button.disabled=false}})});
