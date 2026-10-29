@@ -15,3 +15,6 @@
 /* Landscape cover uses its native 3:2 frame so no text is cropped. */
 .music-card .art.art--landscape-cover{aspect-ratio:3 / 2 !important;min-height:0;overflow:hidden;}
 .music-card .art.art--landscape-cover img{display:block;width:100%;height:100%;object-fit:contain !important;object-position:center center;}
+
+/* Backstage List: signup remains closed until verified delivery is configured. */
+.backstage{background:#1b2529;text-align:center}.backstage-inner{max-width:790px}.backstage h2 span{color:var(--accent)}.backstage-inner>p:not(.kicker){font-size:18px;color:#d0d6d5}.backstage-state{margin:28px auto 0;padding:30px;border:1px solid rgba(217,177,123,.45);background:#131b1f}.backstage-state strong{color:#e8c38d;font-size:20px}.backstage-state p{color:#bfc8c9;margin:12px 0 22px}.backstage-state .btn{display:inline-block}
