@@ -20,11 +20,10 @@ export default async function handler(request){
   const token=crypto.randomUUID()+'-'+crypto.randomUUID(),tokenHash=await hash(token);
   const origin=new URL(request.url).origin;
   const link=origin+'/.netlify/functions/backstage-confirm?token='+encodeURIComponent(token);
-  const unsubscribe=origin+'/.netlify/functions/backstage-unsubscribe?token='+encodeURIComponent(token);
   const record={email,status:'pending',tokenHash,lastSent:new Date().toISOString(),createdAt:existing?.createdAt||new Date().toISOString()};
   await db.setJSON(key,record);
   await db.setJSON('tokens/'+tokenHash,{key,expires:Date.now()+48*60*60*1000});
-  await brevo('smtp/email',{sender:{name:'Jason Sedgwick Music',email:process.env.BREVO_SENDER_EMAIL||'jasonsedgwick264@gmail.com'},to:[{email}],subject:'Confirm your Backstage List subscription',htmlContent:`<div style="font-family:Arial,sans-serif;max-width:580px;margin:auto"><h2>Jason Sedgwick Music</h2><p>Thanks for joining The Backstage List! Confirm that you want to receive music and album updates by clicking below.</p><p><a href="${esc(link)}">Confirm my subscription</a></p><p>This link expires in 48 hours. If you didn't request this, ignore this email.</p><p>Jason Sedgwick Music · <a href="${esc(unsubscribe)}">Unsubscribe</a></p></div>`,textContent:'Confirm your subscription: '+link+'\nIf you did not request this, ignore this email.'});
+  await brevo('smtp/email',{sender:{name:'Jason Sedgwick Music',email:process.env.BREVO_SENDER_EMAIL||'jasonsedgwick264@gmail.com'},to:[{email}],subject:'Confirm your Backstage List subscription',htmlContent:`<div style="font-family:Arial,sans-serif;max-width:580px;margin:auto"><h2>Jason Sedgwick Music</h2><p>Thanks for joining The Backstage List! Confirm that you want to receive music and album updates by clicking below.</p><p><a href="${esc(link)}">Confirm my subscription</a></p><p>This link expires in 48 hours. If you didn't request this, ignore this email.</p><p>Jason Sedgwick Music · If you did not request this email, simply ignore it.</p></div>`,textContent:'Confirm your subscription: '+link+'\nIf you did not request this, ignore this email.'});
   return json(generic);
  }catch(e){console.error('Backstage subscribe failed',e);return json({error:'Unable to send confirmation right now. Please try again later.'},503)}
 }
