@@ -5,6 +5,8 @@ export default async function handler(request){
  const token=new URL(request.url).searchParams.get('token');
  if(!token||!/^[0-9a-f-]{73}$/i.test(token))return page('Invalid link','This confirmation link is invalid.');
  try{
+ if(request.method==='GET')return new Response('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Confirm Backstage List</title><body style="font:18px Arial;background:#172126;color:#f3e7d4;max-width:600px;margin:15vh auto;padding:30px"><h1>Confirm your subscription</h1><p>Click below to join the Jason Sedgwick Music Backstage List.</p><form method="POST"><button style="padding:14px;font-size:18px" type="submit">Yes, subscribe me</button></form></body></html>',{headers:{'Content-Type':'text/html','Cache-Control':'no-store'}});
+ if(request.method!=='POST')return page('Invalid request','Please use the confirmation form.');
  const db=getStore('jason-backstage-subscribers'),digest=await hash(token),entry=await db.get('tokens/'+digest,{type:'json'});
  if(!entry||entry.expires<Date.now())return page('Link expired','Please subscribe again to receive a new confirmation link.');
  const person=await db.get(entry.key,{type:'json'});
