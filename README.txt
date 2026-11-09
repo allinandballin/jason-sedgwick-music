@@ -13,4 +13,3 @@ BEFORE PUBLISHING:
 5. Consider adding a domain and analytics when ready.
 
 No personal contact address or streaming URLs were invented.
-The photos and artwork are from the assets shared or created in the conversation.
