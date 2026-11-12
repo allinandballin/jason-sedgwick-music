@@ -40,3 +40,14 @@
 .band-stage-drum{position:absolute;bottom:13%;left:62%;width:88px;height:76px;border:7px solid #15191c;border-radius:50%;background:radial-gradient(circle,#444e50 5%,#1c2428 66%,#07090b);box-shadow:0 0 0 3px rgba(217,177,123,.17)}.band-stage-drum:before{content:'';position:absolute;bottom:68px;left:36px;width:3px;height:95px;background:#161a1b;box-shadow:47px -18px 0 -1px #161a1b}.band-stage-drum:after{content:'';position:absolute;bottom:147px;left:-3px;width:65px;height:3px;background:#6b5d42;transform:rotate(-10deg);box-shadow:90px 13px 0 #6b5d42}
 @media(max-width:800px){.band-coming-layout{grid-template-columns:1fr;gap:35px}.band-stage{min-height:330px}.band-coming-copy{max-width:650px}}
 @media(max-width:650px){.band-stage{min-height:275px}.band-coming-copy p:not(.kicker):not(.band-coming-lead){font-size:15px}}
+
+/* Behind the Music: original song stories */
+.behind-song-story{max-width:880px;margin:72px auto 0;padding:38px 44px;border:1px solid rgba(201,159,100,.34);background:linear-gradient(145deg,rgba(24,30,32,.97),rgba(37,37,33,.96));box-shadow:0 18px 44px rgba(0,0,0,.14)}
+.behind-song-story .kicker{margin-bottom:10px}
+.behind-song-status{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.12em;margin:0 0 10px}
+.behind-song-story h3{font-family:var(--serif,Georgia,serif);font-size:clamp(28px,4vw,42px);line-height:1.13;margin:0 0 26px;color:var(--paper,#fff)}
+.behind-song-story p:not(.kicker):not(.behind-song-status){font-size:16px;line-height:1.85;color:#d6d6d1;margin:0 0 18px}
+.behind-song-story .behind-song-closing{color:var(--accent)!important;font-size:19px!important;font-weight:700}
+.behind-song-story .behind-song-signature{margin-top:28px!important;font-weight:700;color:var(--paper,#fff)!important}
+.behind-song-signature span{display:block;font-size:12px;font-weight:400;color:#b9b7b1;margin-top:4px}
+@media(max-width:650px){.behind-song-story{margin-top:40px;padding:25px 22px}.behind-song-story p:not(.kicker):not(.behind-song-status){font-size:15px}}
